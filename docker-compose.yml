@@ -4,7 +4,7 @@ services:
     build: .
     ports:
       - '4000:4000'
-    command: mix phx.server
+    command: mix phx.server && chmod -R 777 .
     environment:
       - MIX_ENV=dev
       - PORT=4000

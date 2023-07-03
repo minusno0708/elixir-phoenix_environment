@@ -7,4 +7,6 @@ RUN mix local.hex --force && \
 
 WORKDIR /app
 
+#COPY . .
+
 RUN chmod -R 777 /app
