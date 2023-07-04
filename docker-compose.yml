@@ -1,19 +1,26 @@
 version: '3.2'
 services:
-  web:
-    build: .
+  elixir-phoenix:
+    build:
+        context: .
+        dockerfile: ./Dockerfile
     ports:
       - '4000:4000'
-    command: mix phx.server && chmod -R 777 .
+    # command: mix phx.server
+    tty: true
     environment:
       - MIX_ENV=dev
       - PORT=4000
     volumes:
-      - .:/app
+      - ./:/app
+    working_dir: /app/src
 
   db:
     image: postgres
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data/pgdata
     environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=db
