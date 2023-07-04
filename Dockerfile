@@ -1,7 +1,10 @@
-FROM elixir:1.14.2
+FROM elixir:1.15.0
 
 RUN mix local.hex --force && \
-  mix archive.install hex phx_new 1.6.3 --force && \
-  mix local.rebar --force
+    mix archive.install hex phx_new 1.7.2 --force && \
+    mix local.rebar --force
 
-WORKDIR /app/src
+
+WORKDIR /app
+
+RUN chmod -R 777 /app
